@@ -5,6 +5,10 @@
  */
 package Util;
 
+import Market.pt_market;
+import Prices.Prices;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author liam
@@ -27,18 +31,33 @@ public class Prices_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         Max_WTP_Label = new javax.swing.JLabel();
         Min_OC_Label = new javax.swing.JLabel();
         Slope_Supply_Curve_Label = new javax.swing.JLabel();
         Slope_Demand_Curve_Label = new javax.swing.JLabel();
         Max_WTP = new javax.swing.JTextField();
         Min_OC = new javax.swing.JTextField();
-        JP_Graph = new javax.swing.JPanel();
         Slope_Supply_Curve = new javax.swing.JSlider();
         Slope_Demand_Curve = new javax.swing.JSlider();
         Compute_Btn = new javax.swing.JButton();
         Reset_Btn = new javax.swing.JButton();
         Title_Label = new javax.swing.JLabel();
+        Graph_Offline_Panel = new javax.swing.JPanel();
+        Graph_Online_Panel = new javax.swing.JPanel();
+        Results_Panel = new javax.swing.JPanel();
+        Res_EQ_Qty_Label = new javax.swing.JLabel();
+        Res_EQ_Price_Label = new javax.swing.JLabel();
+        Res_Consumer_Surplus_Label = new javax.swing.JLabel();
+        Res_Producer_Surplus_Label = new javax.swing.JLabel();
+        Res_Total_Surplus_Label = new javax.swing.JLabel();
+        Res_Panel_Title = new javax.swing.JLabel();
+        Res_EQ_Qty = new javax.swing.JLabel();
+        Res_EQ_Price = new javax.swing.JLabel();
+        Res_Consumer_Surplus = new javax.swing.JLabel();
+        Res_Producer_Surplus = new javax.swing.JLabel();
+        Res_Tot_Surplus = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         File_Menu = new javax.swing.JMenu();
         New_Tab_Menu_Item = new javax.swing.JMenuItem();
@@ -46,6 +65,8 @@ public class Prices_GUI extends javax.swing.JFrame {
         Info_Menu = new javax.swing.JMenu();
         Info_Menu_Item = new javax.swing.JMenuItem();
         Help_Menu_Item = new javax.swing.JMenuItem();
+
+        jScrollPane1.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Equilibrium Supply and demand Calculator");
@@ -64,17 +85,6 @@ public class Prices_GUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout JP_GraphLayout = new javax.swing.GroupLayout(JP_Graph);
-        JP_Graph.setLayout(JP_GraphLayout);
-        JP_GraphLayout.setHorizontalGroup(
-            JP_GraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        JP_GraphLayout.setVerticalGroup(
-            JP_GraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 339, Short.MAX_VALUE)
-        );
-
         Compute_Btn.setText("Compute");
         Compute_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +96,99 @@ public class Prices_GUI extends javax.swing.JFrame {
 
         Title_Label.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
         Title_Label.setText("Equilibrium Supply and demand calculator");
+
+        javax.swing.GroupLayout Graph_Offline_PanelLayout = new javax.swing.GroupLayout(Graph_Offline_Panel);
+        Graph_Offline_Panel.setLayout(Graph_Offline_PanelLayout);
+        Graph_Offline_PanelLayout.setHorizontalGroup(
+            Graph_Offline_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 347, Short.MAX_VALUE)
+        );
+        Graph_Offline_PanelLayout.setVerticalGroup(
+            Graph_Offline_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 339, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout Graph_Online_PanelLayout = new javax.swing.GroupLayout(Graph_Online_Panel);
+        Graph_Online_Panel.setLayout(Graph_Online_PanelLayout);
+        Graph_Online_PanelLayout.setHorizontalGroup(
+            Graph_Online_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
+        Graph_Online_PanelLayout.setVerticalGroup(
+            Graph_Online_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        Res_EQ_Qty_Label.setText("Equilibrium Quantity:");
+
+        Res_EQ_Price_Label.setText("Equilibrium Price: ");
+
+        Res_Consumer_Surplus_Label.setText("Consumer Surplus");
+
+        Res_Producer_Surplus_Label.setText("Producer Surplus");
+
+        Res_Total_Surplus_Label.setText("Total Surplus");
+
+        Res_Panel_Title.setText("Results");
+
+        javax.swing.GroupLayout Results_PanelLayout = new javax.swing.GroupLayout(Results_Panel);
+        Results_Panel.setLayout(Results_PanelLayout);
+        Results_PanelLayout.setHorizontalGroup(
+            Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Results_PanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Res_Panel_Title)
+                    .addGroup(Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(Results_PanelLayout.createSequentialGroup()
+                            .addComponent(Res_Total_Surplus_Label)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Res_Tot_Surplus))
+                        .addGroup(Results_PanelLayout.createSequentialGroup()
+                            .addComponent(Res_Producer_Surplus_Label)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Res_Producer_Surplus))
+                        .addGroup(Results_PanelLayout.createSequentialGroup()
+                            .addComponent(Res_Consumer_Surplus_Label)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Res_Consumer_Surplus))
+                        .addGroup(Results_PanelLayout.createSequentialGroup()
+                            .addComponent(Res_EQ_Price_Label)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Res_EQ_Price))
+                        .addGroup(Results_PanelLayout.createSequentialGroup()
+                            .addComponent(Res_EQ_Qty_Label)
+                            .addGap(88, 88, 88)
+                            .addComponent(Res_EQ_Qty))))
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        Results_PanelLayout.setVerticalGroup(
+            Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Results_PanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(Res_Panel_Title)
+                .addGap(28, 28, 28)
+                .addGroup(Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Res_EQ_Qty_Label)
+                    .addComponent(Res_EQ_Qty))
+                .addGap(18, 18, 18)
+                .addGroup(Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Res_EQ_Price_Label)
+                    .addComponent(Res_EQ_Price))
+                .addGap(18, 18, 18)
+                .addGroup(Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Res_Consumer_Surplus_Label)
+                    .addComponent(Res_Consumer_Surplus))
+                .addGap(18, 18, 18)
+                .addGroup(Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Res_Producer_Surplus_Label)
+                    .addComponent(Res_Producer_Surplus))
+                .addGap(18, 18, 18)
+                .addGroup(Results_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Res_Total_Surplus_Label)
+                    .addComponent(Res_Tot_Surplus))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
 
         File_Menu.setText("File");
 
@@ -138,10 +241,6 @@ public class Prices_GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JP_Graph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -152,7 +251,7 @@ public class Prices_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Max_WTP, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Min_OC, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Slope_Demand_Curve_Label)
@@ -162,7 +261,7 @@ public class Prices_GUI extends javax.swing.JFrame {
                                 .addComponent(Slope_Supply_Curve_Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Slope_Supply_Curve, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(323, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -171,6 +270,14 @@ public class Prices_GUI extends javax.swing.JFrame {
                                 .addComponent(Reset_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Title_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Graph_Offline_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Graph_Online_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(Results_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,19 +306,46 @@ public class Prices_GUI extends javax.swing.JFrame {
                     .addComponent(Compute_Btn)
                     .addComponent(Reset_Btn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JP_Graph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Graph_Online_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Graph_Offline_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Results_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Variables for the market
+    double WTP_Max; double OC_Min; double slope_demand; double slope_supply;
+    
+    //Creates Markets
+    pt_market online_market = new pt_market(WTP_Max, OC_Min, slope_demand, slope_supply);
+    
+    
+    
     private void Max_WTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Max_WTPActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_Max_WTPActionPerformed
 
     private void Compute_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Compute_BtnActionPerformed
         // TODO add your handling code here:
+        try{
+            
+            WTP_Max = Float.parseFloat(Max_WTP.getText());
+            OC_Min  = Float.parseFloat(Min_OC.getText());
+            slope_demand =  (float)(Slope_Demand_Curve.getValue());
+            slope_supply = (float)(Slope_Supply_Curve.getValue());
+            
+        }catch(IllegalArgumentException e){
+            
+            JOptionPane.showMessageDialog(null,e);
+            
+        }
+        
+        
+        
     }//GEN-LAST:event_Compute_BtnActionPerformed
 
     private void New_Tab_Menu_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_Tab_Menu_ItemActionPerformed
@@ -229,6 +363,7 @@ public class Prices_GUI extends javax.swing.JFrame {
     private void Help_Menu_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Help_Menu_ItemActionPerformed
         new Help_GUI().setVisible(true);
     }//GEN-LAST:event_Help_Menu_ItemActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -270,21 +405,36 @@ public class Prices_GUI extends javax.swing.JFrame {
     private javax.swing.JButton Compute_Btn;
     private javax.swing.JMenuItem Exit_Tab_Menu_Item;
     private javax.swing.JMenu File_Menu;
+    private javax.swing.JPanel Graph_Offline_Panel;
+    private javax.swing.JPanel Graph_Online_Panel;
     private javax.swing.JMenuItem Help_Menu_Item;
     private javax.swing.JMenu Info_Menu;
     private javax.swing.JMenuItem Info_Menu_Item;
-    private javax.swing.JPanel JP_Graph;
     private javax.swing.JTextField Max_WTP;
     private javax.swing.JLabel Max_WTP_Label;
     private javax.swing.JTextField Min_OC;
     private javax.swing.JLabel Min_OC_Label;
     private javax.swing.JMenuItem New_Tab_Menu_Item;
+    private javax.swing.JLabel Res_Consumer_Surplus;
+    private javax.swing.JLabel Res_Consumer_Surplus_Label;
+    private javax.swing.JLabel Res_EQ_Price;
+    private javax.swing.JLabel Res_EQ_Price_Label;
+    private javax.swing.JLabel Res_EQ_Qty;
+    private javax.swing.JLabel Res_EQ_Qty_Label;
+    private javax.swing.JLabel Res_Panel_Title;
+    private javax.swing.JLabel Res_Producer_Surplus;
+    private javax.swing.JLabel Res_Producer_Surplus_Label;
+    private javax.swing.JLabel Res_Tot_Surplus;
+    private javax.swing.JLabel Res_Total_Surplus_Label;
     private javax.swing.JButton Reset_Btn;
+    private javax.swing.JPanel Results_Panel;
     private javax.swing.JSlider Slope_Demand_Curve;
     private javax.swing.JLabel Slope_Demand_Curve_Label;
     private javax.swing.JSlider Slope_Supply_Curve;
     private javax.swing.JLabel Slope_Supply_Curve_Label;
     private javax.swing.JLabel Title_Label;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
