@@ -7,6 +7,9 @@ package Util;
 
 import Market.pt_market;
 import Prices.Prices;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -192,7 +195,7 @@ public class Prices_GUI extends javax.swing.JFrame {
 
         File_Menu.setText("File");
 
-        New_Tab_Menu_Item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        New_Tab_Menu_Item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         New_Tab_Menu_Item.setText("New Window");
         New_Tab_Menu_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +204,7 @@ public class Prices_GUI extends javax.swing.JFrame {
         });
         File_Menu.add(New_Tab_Menu_Item);
 
-        Exit_Tab_Menu_Item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        Exit_Tab_Menu_Item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
         Exit_Tab_Menu_Item.setText("Exit");
         Exit_Tab_Menu_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +217,7 @@ public class Prices_GUI extends javax.swing.JFrame {
 
         Info_Menu.setText("?");
 
-        Info_Menu_Item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        Info_Menu_Item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Info_Menu_Item.setText("Information");
         Info_Menu_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,7 +226,7 @@ public class Prices_GUI extends javax.swing.JFrame {
         });
         Info_Menu.add(Info_Menu_Item);
 
-        Help_Menu_Item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        Help_Menu_Item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         Help_Menu_Item.setText("Help");
         Help_Menu_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,10 +341,23 @@ public class Prices_GUI extends javax.swing.JFrame {
             slope_demand =  (float)(Slope_Demand_Curve.getValue());
             slope_supply = (float)(Slope_Supply_Curve.getValue());
             
+            pt_market market = new pt_market(WTP_Max, OC_Min, slope_demand, slope_supply);
+            
+            File_Manager fm = new File_Manager(market);
+            
+            Res_Consumer_Surplus.setText(Double.toString(market.getConsumerSurplus()));
+            Res_Producer_Surplus.setText(Double.toString(market.getProducerSurplus()));
+            Res_Tot_Surplus.setText(Double.toString(market.getTotalSurplus()));
+            Res_EQ_Price.setText(Double.toString(market.getEquilibriumPrice()));
+            Res_EQ_Qty.setText(Double.toString(market.getEquilibriumQuantity()));
+
+            
         }catch(IllegalArgumentException e){
             
             JOptionPane.showMessageDialog(null,e);
             
+        } catch (IOException ex) {
+            Logger.getLogger(Prices_GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
