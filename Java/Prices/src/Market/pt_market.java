@@ -19,6 +19,19 @@ public class pt_market {
 		
 	}
 	
+        
+        public double getWTP_Max(){
+            return this.WTP_Max;
+        }
+        public double getOC_Min(){
+            return this.OC_Min;
+        } 
+        public double getslope_demand(){
+            return this.slope_demand;
+        }
+        public double getslope_supply(){
+            return this.slope_supply;
+        }
 
 	public double getEquilibriumQuantity() {
 		//Computes equilibrium quantity
